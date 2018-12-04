@@ -68,7 +68,7 @@ post '/' do
     case notification_type
     when 'push'
       json['commits'].each do |commit|
-        commit_message = commit['message'].gsub(/\n/," ")
+        commit_message = commit['message'].lines.first
         say "[#{json['repository']['name']}] #{commit['author']['name']} | New Commit: #{commit_message}"
         say "           View Commit: #{commit['url']}"
       end
