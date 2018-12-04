@@ -74,11 +74,9 @@ post '/' do
     when 'tag_push'
       say "[#{json['repository']['name']}] #{json['user_name']} | New Tag: #{json['ref']}"
     when 'issue'
-      say "[#{json['repository']['name']}] #{json['user_name']} | New Issue: #{json['object_attributes']['title']}"
-      say "           View Issue: #{json['object_attributes']['url']}"
+      say "#{json['user_name']} made issue for #{json['repository']['name']} | #{json['object_attributes']['title']} #{json['object_attributes']['url']}"
     when 'merge_request'
-      say "[#{json['repository']['name']}] #{json['user_name']} | New Merge Request: #{json['object_attributes']['title']}"
-      say "           View Request: #{json['object_attributes']['url']}"
+      say "MR from #{json['user_name']} to #{json['repository']['name']} | #{json['object_attributes']['title']} #{json['object_attributes']['url']}"
     end
 
     status 200
