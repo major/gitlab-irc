@@ -69,8 +69,7 @@ post '/' do
     when 'push'
       json['commits'].each do |commit|
         commit_message = commit['message'].lines.first
-        say "[#{json['repository']['name']}] #{commit['author']['name']} | New Commit: #{commit_message}"
-        say "           View Commit: #{commit['url']}"
+        say "#{commit['author']['name']} committed to #{json['repository']['name']} | #{commit_message} #{commit['url']}"
       end
     when 'tag_push'
       say "[#{json['repository']['name']}] #{json['user_name']} | New Tag: #{json['ref']}"
