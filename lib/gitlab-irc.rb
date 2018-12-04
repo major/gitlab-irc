@@ -69,14 +69,14 @@ post '/' do
     when 'push'
       json['commits'].each do |commit|
         commit_message = commit['message'].lines.first
-        say "#{commit['author']['name']} committed to #{json['repository']['name']} | #{commit_message} #{commit['url']}"
+        say "New commit: #{commit_message} #{commit['url']}"
       end
     when 'tag_push'
       say "[#{json['repository']['name']}] #{json['user_name']} | New Tag: #{json['ref']}"
     when 'issue'
-      say "New issue for #{json['repository']['name']} | #{json['object_attributes']['title']} #{json['object_attributes']['url']}"
+      say "New issue: #{json['object_attributes']['title']} #{json['object_attributes']['url']}"
     when 'merge_request'
-      say "MR to #{json['repository']['name']} | #{json['object_attributes']['title']} #{json['object_attributes']['url']}"
+      say "New MR: #{json['object_attributes']['title']} #{json['object_attributes']['url']}"
     end
 
     status 200
